@@ -8,7 +8,8 @@ import { Dish } from '../shared/Dish';
 })
 export class DishdetailComponent implements OnInit {
 
-  @Input()
+  @Input() // This enables the field dish be passed as a parameter to the DishdetailComponent,
+           // Angular will update all changes in the dom regarding this variable.
   dish: Dish;
 
   constructor() { }
