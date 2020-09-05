@@ -9,15 +9,25 @@ export class DishService {
 
   constructor() { }
 
-  getDishes(): Dish[] {
-    return DISHES;
+  getDishes(): Promise<Dish[]> {
+    return new Promise(resolve => {
+      //SIMULATE SERVER LATENCY WITH 2 SECOND DELAY
+      setTimeout(() => resolve(DISHES), 2000);
+    });
+
   }
 
-  getDish(id: string): Dish {
-    return DISHES.filter((dish) => (dish.id === id))[0]; // CERO TO GET THE FIRST RESULT
+  getDish(id: string): Promise<Dish> {
+    return new Promise(resolve => {
+      setTimeout(() => resolve(DISHES.filter((dish) => (dish.id === id))[0]), 2000); // CERO TO GET THE FIRST RESULT
+    }); 
+
   }
 
-  getFeaturedDish(): Dish {
-    return DISHES.filter((dish) => dish.featured)[0];
+  getFeaturedDish(): Promise<Dish> {
+    return new Promise(resolve => {
+      setTimeout(() => resolve(DISHES.filter((dish) => dish.featured)[0]), 2000);
+    });  
+   
   }
 }

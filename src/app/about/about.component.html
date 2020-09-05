@@ -53,7 +53,7 @@
     </mat-card>
   </div>
 
-  <div fxFlex>
+  <div fxFlex *ngIf="leaders">
       <mat-grid-list cols="2" rowHeight="200px">
           <mat-grid-tile *ngFor="let leader of leaders">
               <img height="200px" src="{{leader.image}}" alt="{{leader.name}}">
@@ -63,6 +63,10 @@
 
           </mat-grid-tile>
       </mat-grid-list>
+  </div>
+
+  <div [hidden]="leaders">
+    <mat-spinner></mat-spinner><h4>Loading...</h4>
   </div>
 
 </div>
