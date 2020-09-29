@@ -20,6 +20,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FormsModule } from '@angular/forms';
 // Modules to use Reactive Forms
 import { ReactiveFormsModule } from '@angular/forms';
+// Module to retrieve data from server
+import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
 // MAIN APP COMPONENT
 import { AppComponent } from './app.component';
@@ -34,12 +37,17 @@ import { FooterComponent } from './footer/footer.component';
 import { AboutComponent } from './about/about.component';
 import { HomeComponent } from './home/home.component';
 import { ContactComponent } from './contact/contact.component';
+import { LoginComponent } from './login/login.component';
 
 // SERVICES
 import { DishService } from './services/dish.service';
 import { PromotionService } from './services/promotion.service';
 import { LeaderService } from './services/leader.service';
-import { LoginComponent } from './login/login.component';
+import { ProcessHTTPMsgService } from './services/process-httpmsg-service.service';
+
+//CONSTANTS
+import { BaseURL } from './shared/BaseURL';
+import { HighlightDirective } from './directives/highlight.directive';
 
 @NgModule({
   declarations: [
@@ -51,7 +59,8 @@ import { LoginComponent } from './login/login.component';
     AboutComponent,
     HomeComponent,
     ContactComponent,
-    LoginComponent
+    LoginComponent,
+    HighlightDirective
   ],
   imports: [
     BrowserModule,
@@ -72,7 +81,9 @@ import { LoginComponent } from './login/login.component';
     MatProgressSpinnerModule,
     MatSliderModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
+    HttpModule
   ],
   entryComponents: [ // Popup Components
     LoginComponent
@@ -80,7 +91,9 @@ import { LoginComponent } from './login/login.component';
   providers: [
     DishService,
     PromotionService,
-    LeaderService
+    LeaderService,
+    ProcessHTTPMsgService,
+    { provide: 'BaseURL', useValue: BaseURL }
   ],
   bootstrap: [AppComponent]
 })
